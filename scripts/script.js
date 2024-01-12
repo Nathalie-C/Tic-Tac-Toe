@@ -35,6 +35,7 @@ const btnCells = document.querySelectorAll(".cell");
 const btnPlayAgain = document.getElementById("play-again");
 const btnBackHomepage = document.getElementById("back-to-homepage");
 const gameEndChoices = document.getElementById("game-end-choices");
+const blurBg = document.querySelector(".blur-bg");
 const crossmarks = document.querySelectorAll(".cross-mark");
 const circlemarks = document.querySelectorAll(".circle-mark");
 
@@ -66,13 +67,16 @@ selfPlayerName.addEventListener("change", function () {
 });
 
 btnSubmitNames.addEventListener("click", function () {
-  if (playerOneName.value.trim() === "") {
-    playerOneName.classList.add("check-required");
-  }
-  if (playerTwoName.value.trim() === "") {
-    playerTwoName.classList.add("check-required");
-  }
   if (playerOneName.value.trim() === "" || playerTwoName.value.trim() === "") {
+    alert("Name can not be empty!");
+    return;
+  }
+
+  if (
+    playerOneName.value.trim().length >= 9 ||
+    playerTwoName.value.trim().length >= 9
+  ) {
+    alert("Name can not be more than 8 digit!");
     return;
   }
   submitNamesPage.style.display = "none";
@@ -80,31 +84,37 @@ btnSubmitNames.addEventListener("click", function () {
 
   playerOne.innerHTML = playerOneName.value.trim();
   playerTwo.innerHTML = playerTwoName.value.trim();
-  gameStatus.children[0].innerHTML = `It's ${playerOneName.value.trim()}'s Turn!`;
+  gameStatus.children[0].innerHTML = `${playerOneName.value.trim()}'s Turn!`;
   gameBoard.style.display = "block";
-  playerOne.style.color = "green";
+  playerOne.style.color = "#00caad";
+  gameStatus.style.display = "block";
   gameStatus.style.opacity = 1;
   setTimeout(function () {
     gameStatus.style.opacity = 0;
-  }, 3000);
+  }, 1500);
   opponent = "friend";
 });
 
 btnSubmitNameComputer.addEventListener("click", function () {
   if (selfPlayerName.value.trim() === "") {
-    selfPlayerName.classList.add("check-required");
+    alert("Name can not be empty!");
     return;
+  } else if (selfPlayerName.value.trim().length >= 9) {
+    alert("Name can not be more than 8 digit!");
+    return;
+  } else {
+    submitNameComputerPage.style.display = "none";
+    playWComputerPage.style.display = "flex";
+    selfPlayer.innerHTML = selfPlayerName.value.trim();
+    gameBoard.style.display = "block";
+    selfPlayer.style.color = "#00caad";
+    gameStatus.style.display = "block";
+    gameStatus.style.opacity = 1;
+    setTimeout(function () {
+      gameStatus.style.opacity = 0;
+    }, 1500);
+    opponent = "computer";
   }
-  submitNameComputerPage.style.display = "none";
-  playWComputerPage.style.display = "flex";
-  selfPlayer.innerHTML = selfPlayerName.value.trim();
-  gameBoard.style.display = "block";
-  selfPlayer.style.color = "#d9d9e5";
-  gameStatus.style.opacity = 1;
-  setTimeout(function () {
-    gameStatus.style.opacity = 0;
-  }, 3000);
-  opponent = "computer";
 });
 
 btnBackHomepage.addEventListener("click", function () {
@@ -116,6 +126,7 @@ btnPlayAgain.addEventListener("click", function () {
   setTimeout(function () {
     gameStatus.style.opacity = 0;
   }, 3000);
+  blurBg.style.display = "none";
   gameEndChoices.style.display = "none";
   gameEndChoices.style.opacity = 0;
   selectedCellsList = [];
@@ -126,7 +137,7 @@ btnPlayAgain.addEventListener("click", function () {
   circlemarks.forEach(function (circlemark) {
     circlemark.style.opacity = 0;
   });
-  playerOne.style.color = "green";
+  playerOne.style.color = "#00caad";
   playerTwo.style.color = "#d9d9e5";
   selfPlayer.style.color = "#d9d9e5";
   computerPlayer.style.color = "#d9d9e5";
@@ -154,11 +165,17 @@ let playerTwoScore = 0;
 let playerOneScoreCom = 0;
 let playerTwoScoreCom = 0;
 
+// click cells
 btnCells.forEach(function (btnCell) {
   btnCell.addEventListener("click", function () {
     // doesn't need to be outside coz we don't need to remember the previous value, but it needs to be outside for loop so the if statement can access it
 
     let hasThisCellBeenClickedBefore = false;
+    // if computer(player 2) hasn't click, player 1 can't click
+    if (opponent === "computer" && currentPlayer === "1") {
+      alert("Please wait for Robot to select!");
+      return;
+    }
     // check the list, it's on the list, do nothing, if it's not, show the mark(display = 'block')
     if (
       selectedCellsList[parseInt(btnCell.dataset.cell)] === "0" ||
@@ -184,7 +201,7 @@ btnCells.forEach(function (btnCell) {
         playerOneScoreH2.innerHTML = `${playerOneScore}`;
         playerOneScoreCom++;
         playerOneScoreComH2.innerHTML = `${playerOneScoreCom}`;
-        selfPlayer.style.color = "green";
+        selfPlayer.style.color = "#00caad";
       } else {
         playerTwoScore++;
         playerTwoScoreH2.innerHTML = `${playerTwoScore}`;
@@ -212,7 +229,7 @@ btnCells.forEach(function (btnCell) {
       setTimeout(function () {
         console.log("inside settimneout", randomNum);
         btnCells[randomNum].children[1].style.opacity = 1;
-      }, 800);
+      }, 600);
       selectedCellsList[randomNum] = "1";
 
       currentPlayer = "1";
@@ -221,7 +238,7 @@ btnCells.forEach(function (btnCell) {
       if (winCheck(currentPlayer) === true) {
         playerTwoScoreCom++;
         playerTwoScoreComH2.innerHTML = `${playerTwoScoreCom}`;
-        computerPlayer.style.color = "green";
+        computerPlayer.style.color = "#00caad";
         return;
       }
       //computer draw check
@@ -234,12 +251,12 @@ btnCells.forEach(function (btnCell) {
       // if play with friends, switch player
       if (currentPlayer === "0") {
         playerOne.style.color = "#d9d9e5";
-        playerTwo.style.color = "green";
+        playerTwo.style.color = "#00caad";
         // selfPlayer.style.color = "#d9d9e5";
         // computerPlayer.style.color = "green";
         currentPlayer = "1";
       } else {
-        playerOne.style.color = "green";
+        playerOne.style.color = "#00caad";
         playerTwo.style.color = "#d9d9e5";
         // selfPlayer.style.color = "green";
         // computerPlayer.style.color = "#d9d9e5";
@@ -318,6 +335,7 @@ function drawTwinkle(opacity, waitTime) {
 function showEndChoices() {
   gameEndChoices.style.display = "flex";
   gameEndChoices.style.opacity = 1;
+  blurBg.style.display = "flex";
 }
 
 function gameBoardFade() {
@@ -345,6 +363,8 @@ function goBackToMainPage() {
   playWFriendPage.style.display = "none";
   playWComputerPage.style.display = "none";
   gameBoard.style.display = "none";
+  blurBg.style.display = "none";
+  gameStatus.style.display = "none";
   gameStatus.style.opacity = 0;
   gameStatus.style.transition = "0s";
 
@@ -359,7 +379,7 @@ function goBackToMainPage() {
   circlemarks.forEach(function (circlemark) {
     circlemark.style.opacity = 0;
   });
-  playerOne.style.color = "green";
+  playerOne.style.color = "#00caad";
   playerTwo.style.color = "#d9d9e5";
   selfPlayer.style.color = "#d9d9e5";
   computerPlayer.style.color = "#d9d9e5";

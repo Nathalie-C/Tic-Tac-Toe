@@ -25,15 +25,17 @@
 body {
   background-color: #03011e;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   color: #a2a2af;
+}
+
+.wrapper {
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 h1,
@@ -43,19 +45,19 @@ h4,
 h5,
 h6 {
   font-family: "League Spartan", Arial, Helvetica, sans-serif;
-  font-size: 2.5rem;
+  font-size: 1.3rem;
   text-align: center;
   color: #d9d9e5;
 }
 
 h1 {
-  font-size: 7rem;
+  font-size: 2.5rem;
 }
 
 h2 {
   margin-top: 3.2rem;
   margin-bottom: 1rem;
-  font-size: 5rem;
+  font-size: 2rem;
 }
 
 h3 {
@@ -66,7 +68,7 @@ h3 {
 p {
   margin: 0.5rem auto;
 
-  font-size: 2.8rem;
+  font-size: 1.3rem;
   text-align: center;
   color: #d9d9e5;
 }
@@ -78,7 +80,7 @@ table {
 }
 
 table td {
-  border: 12px solid #79778b;
+  border: 12px solid #4a495a;
   border-collapse: collapse;
 }
 
@@ -93,6 +95,14 @@ table tr td:first-child {
 }
 table tr td:last-child {
   border-right: 0;
+}
+
+form {
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
 }
 /* Links
 --------------------------------------------- */
@@ -118,12 +128,37 @@ a:focus {
   position: relative;
 }
 
-#header img {
-  margin: 1rem auto;
-  height: 7rem;
+.favicon {
+  width: 4rem;
+  margin: 2rem auto;
   position: absolute;
   left: 0;
   right: 0;
+  cursor: pointer;
+}
+
+/* 430px */
+@media (min-width: 26.875em) {
+  #header {
+    height: 11rem;
+  }
+
+  .favicon {
+    width: 6rem;
+    margin-top: 3rem;
+  }
+}
+
+/* 1700px */
+@media (min-width: 106.25em) {
+  #header {
+    height: 13rem;
+  }
+
+  .favicon {
+    width: 7rem;
+    margin-top: 4rem;
+  }
 }
 /* Main
 --------------------------------------------- */
@@ -134,50 +169,99 @@ main {
 }
 
 /* starting page */
-.game-setting {
-  display: flex;
-  flex-direction: column;
-  gap: 3.5rem;
-  align-items: center;
-}
-
-.game-setting button {
-  display: block;
-  background-color: #529352;
-  border: none;
-  border-radius: 10px;
-}
-
-.play-with-friend h2 {
-  padding: 1.3rem 3.7rem;
-  font-size: 3.3rem;
-  font-weight: 500;
-  margin: 0 auto;
-}
-
-.play-with-computer h2 {
-  padding: 1.3rem 2.5rem;
-  font-size: 3.3rem;
-  font-weight: 500;
-  margin: 0 auto;
-}
-
 .heading-starting-page {
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 #tic {
   color: #7cc1eb;
+  margin-top: 0;
 }
 
 #tac {
   color: #ffa37f;
-  margin: auto 1.7rem;
+  margin: auto 1rem;
+  margin-top: 0;
 }
 
 #toe {
   color: #ca7fff;
+  margin-top: 0;
+}
+
+/* 1st page btn */
+.game-setting {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.game-setting button {
+  /* display: block; */
+  border: none;
+  border-radius: 50px;
+  width: 15.5rem;
+  height: 3.7rem;
+  margin-top: 1.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.play-with-computer {
+  margin-bottom: 3.5rem;
+}
+
+/* 1st page btn */
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #02aab0 0%,
+    #00cdac 51%,
+    #02aab0 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  display: block;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+/* other pages btn */
+.btn {
+  cursor: pointer;
+  background-image: linear-gradient(
+    to right,
+    #4776e6 0%,
+    #8e54e9 51%,
+    #4776e6 100%
+  );
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 50px;
+  display: block;
+}
+
+.btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
 /* submit names pages*/
@@ -186,83 +270,100 @@ main {
   display: none;
 }
 
+.submit-names h2,
+.submit-name-computer h2 {
+  margin: 2rem auto;
+}
+
 .friends-form img,
 .computer-form img {
-  width: 5rem;
-  margin-right: 0.6rem;
+  display: block;
+  width: 3.5rem;
+  margin-right: 1rem;
+}
+
+.computer-form img {
+  width: 4rem;
+  margin: 2.5rem auto 3rem auto;
+}
+
+.friends-form-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.submit-names form,
+.submit-name-computer form {
+  margin: 1rem auto;
+}
+
+input {
+  border-radius: 50px;
+  height: 2.5rem;
+  width: 11rem;
+}
+/* type name placeholder */
+input[type="text"].check-required:required + span:after {
+  margin-top: 0;
+  content: "Required!";
+  color: #d9d9e5;
+}
+/* start game btn */
+input[type="button"] {
+  margin: 3.5rem auto;
+  border: none;
+  width: 15rem;
+  height: 3.5rem;
+}
+
+input[value="Start"] {
+  font-family: "League Spartan", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: white;
+}
+/* -------- game page ----------------------------------------*/
+.players {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  width: 100vw;
+}
+
+.players img {
+  width: 4rem;
+  margin: 0 1rem 0.5rem 1rem;
+}
+
+.player-combo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.player-combo h2 {
+  font-size: 1.6rem;
+  margin: auto;
 }
 
 .player-one-score,
 .player-one-score-com {
-  margin: auto 1.5rem auto 2rem;
+  margin: auto 1.25rem auto 0.5rem;
 }
 
 .player-two-score,
 .player-two-score-com {
-  margin: auto 2rem auto 1.5rem;
+  margin: auto 0.5rem auto 1.25rem;
 }
 
 .player-one-score,
 .player-two-score,
 .player-one-score-com,
 .player-two-score-com {
-  font-weight: 100;
-}
-
-.submit-names form,
-.submit-name-computer form {
-  margin-top: 5rem;
-}
-
-label {
-  font-family: "League Spartan", Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
-  text-align: left;
-  color: #d9d9e5;
-  margin-right: 2rem;
-  /* display: block; */
-}
-
-input {
-  height: 3rem;
-  width: 15rem;
-  border-radius: 10px;
-}
-
-input[type="text"].check-required:required + span:after {
-  margin-left: 1rem;
-  content: "Required!";
-  color: #d9d9e5;
-}
-
-input[type="button"] {
-  background-color: #529352;
-  border: none;
-  padding: 0;
-  margin-top: 4rem;
-  margin-left: 23.5rem;
-  height: 5rem;
-}
-
-input[value="Start"] {
-  font-family: "League Spartan", Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
-  color: #d9d9e5;
-}
-/* game page */
-.players {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  display: none;
-  width: 100vw;
-  margin-top: 1.5rem;
-}
-
-.players img {
-  width: 6.5rem;
+  font-weight: 600;
 }
 
 .cross-player-one,
@@ -283,17 +384,14 @@ input[value="Start"] {
   text-align: left;
 }
 
-#game-status h2 {
-  font-size: 4rem;
-}
-
 #game-end-choices {
   display: none;
   flex-direction: column;
-  width: 42rem;
+  width: 17rem;
+  height: 5rem;
   margin: auto;
   position: absolute;
-  top: 36rem;
+  top: 24rem;
   left: 0;
   right: 0;
   justify-content: center;
@@ -303,14 +401,22 @@ input[value="Start"] {
 }
 
 #game-end-choices h2 {
-  font-size: 3rem;
-  background-color: #529352;
-  padding: 1.2rem 8rem;
-  border-radius: 15px;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  margin: 0 auto;
 }
 
-#back-to-homepage h2 {
-  margin-top: 2rem;
+.blur-bg {
+  display: none;
+  position: absolute;
+  background-color: #03011e9c;
+  -webkit-filter: blur(20px);
+  top: 16rem;
+  left: 0;
+  right: 0;
+  width: 19rem;
+  height: 18.5rem;
+  z-index: 90;
 }
 
 #game-page {
@@ -320,21 +426,32 @@ input[value="Start"] {
 }
 
 #game-page td {
-  width: 14rem;
-  height: 14rem;
+  width: 10rem;
+  height: 6rem;
   position: relative;
 }
 
 #game-status {
-  display: block;
+  display: none;
   transition: opacity 0.5s;
   opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 18rem;
+  z-index: 100;
+}
+
+#game-status h2 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: #b087f4;
+  text-shadow: #333232 4px -1px 7px;
 }
 
 .gameboard {
-  margin-bottom: 2.5rem;
+  margin: 2rem auto 2.5rem auto;
   position: relative;
-
   display: none;
 }
 .circle-mark,
@@ -344,10 +461,16 @@ input[value="Start"] {
   transition: opacity 0.3s;
   opacity: 0;
   position: absolute;
-  top: 1.6rem;
+  top: 1rem;
   left: 0;
   right: 0;
-  max-width: 10rem;
+  max-width: 3.5rem;
+}
+
+.cross-mark {
+  left: 0;
+  right: 0;
+  top: 1rem;
 }
 
 .win-line {
@@ -355,16 +478,180 @@ input[value="Start"] {
   /* display: none; */
 }
 
+/* 430px */
+@media (min-width: 26.875em) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .game-setting button {
+    width: 19rem;
+    height: 5rem;
+    font-size: 1.4rem;
+    margin-top: 1.2rem;
+  }
+}
+
+/* 1400px */
+@media (min-width: 87.5em) {
+  h1 {
+    font-size: 5rem;
+  }
+
+  .game-setting button {
+    width: 24rem;
+    height: 6rem;
+    font-size: 1.8rem;
+    margin-top: 2.6rem;
+  }
+
+  #tic,
+  #tac,
+  #toe {
+    margin-bottom: 0.5rem;
+  }
+
+  /* type names */
+  .submit-names h2,
+  .submit-name-computer h2 {
+    margin: 2rem auto;
+    font-size: 3.5rem;
+  }
+
+  .friends-form img,
+  .computer-form img {
+    display: block;
+    width: 4.5rem;
+    margin-right: 2rem;
+  }
+
+  .computer-form img {
+    width: 6rem;
+    margin: 2.5rem 2rem 3rem auto;
+  }
+
+  .friends-form-input {
+    margin-top: 3rem;
+  }
+
+  /* type name placeholder */
+  input {
+    height: 3rem;
+    width: 19rem;
+  }
+
+  /* start game btn */
+  input[type="button"] {
+    margin: 4rem auto;
+    border: none;
+    width: 25rem;
+    height: 4.3rem;
+  }
+
+  input[value="Start"] {
+    font-family: "League Spartan", Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: white;
+  }
+}
+
+/* 1700px */
+@media (min-width: 106.25em) {
+  h1 {
+    font-size: 5.1rem;
+  }
+
+  .game-setting button {
+    width: 25rem;
+    height: 6.5rem;
+    font-size: 1.8rem;
+    margin-top: 2.6rem;
+  }
+
+  #tic,
+  #tac,
+  #toe {
+    margin-bottom: 1rem;
+  }
+  /* type names */
+  .submit-names h2,
+  .submit-name-computer h2 {
+    margin: 2rem auto;
+    font-size: 4.5rem;
+  }
+
+  .friends-form img,
+  .computer-form img {
+    display: block;
+    width: 6rem;
+    margin-right: 3.5rem;
+  }
+
+  .computer-form img {
+    width: 7rem;
+    margin: 2.5rem 2rem 3rem auto;
+  }
+
+  .friends-form-input {
+    margin-top: 4rem;
+  }
+
+  /* type name placeholder */
+  input {
+    height: 4rem;
+    width: 23rem;
+    font-size: 1.5rem;
+  }
+
+  /* start game btn */
+  input[type="button"] {
+    margin: 5.5rem auto;
+    border: none;
+    width: 33rem;
+    height: 5.3rem;
+  }
+
+  input[value="Start"] {
+    font-family: "League Spartan", Arial, Helvetica, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: white;
+  }
+}
+
 /* Footer
 --------------------------------------------- */
 footer {
-  padding: 1rem 0;
+  padding: 2.3rem 0;
   background-color: #120e40;
+  bottom: 0;
+  margin-top: 2rem;
+  /* position: fixed; */
+  left: 0;
+  right: 0;
 }
 
 .copyright p {
   text-align: center;
   margin: auto;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 2rem;
+  font-size: 0.9rem;
+  font-weight: 200;
+  line-height: 1.4rem;
+}
+
+/* 1400px */
+@media (min-width: 87.5em) {
+  .copyright p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+}
+
+/* 1700px */
+@media (min-width: 106.25em) {
+  .copyright p {
+    font-size: 1.4rem;
+  }
 }

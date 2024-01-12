@@ -18,6 +18,83 @@
     />
 
     <!-- favicon -->
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="57x57"
+      href="favicon/apple-touch-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="114x114"
+      href="favicon/apple-touch-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="72x72"
+      href="favicon/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="144x144"
+      href="favicon/apple-touch-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="60x60"
+      href="favicon/apple-touch-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="120x120"
+      href="favicon/apple-touch-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="76x76"
+      href="favicon/apple-touch-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="152x152"
+      href="favicon/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-196x196.png"
+      sizes="196x196"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-128.png"
+      sizes="128x128"
+    />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
 
     <!-- style-sheets -->
     <link rel="stylesheet" href="styles/normalize-fwd.css" />
@@ -26,215 +103,276 @@
   </head>
 
   <body>
-    <a href="#site-main" class="screen-reader-text">Skip to content</a>
-    <header id="header">
-      <img
-        class="favicon"
-        src="images/tac_tic_toe_icon.svg"
-        alt="favicon of tic tac toe"
-      />
-    </header>
+    <div class="wrapper">
+      <a href="#site-main" class="screen-reader-text">Skip to content</a>
+      <header id="header">
+        <img
+          class="favicon"
+          src="images/tac_tic_toe_icon.svg"
+          alt="favicon of tic tac toe"
+        />
+      </header>
 
-    <main id="site-main">
-      <section id="starting-page">
-        <div class="heading-starting-page">
-          <h1 id="tic">Tic</h1>
-          <h1 id="tac">Tac</h1>
-          <h1 id="toe">Toe</h1>
-        </div>
-
-        <div class="game-setting">
-          <button class="play-with-friend"><h2>Play with a Friend</h2></button>
-          <button class="play-with-computer">
-            <h2>Play with Computer</h2>
-          </button>
-        </div>
-      </section>
-
-      <section class="submit-names">
-        <h2>Please put in your names</h2>
-
-        <form class="friends-form" name="myForm" method="get">
-          <img src="images/monster-1.svg" alt="an icon of a monster" />
-          <label for="fname">First player's name :</label>
-          <input type="text" id="fname" name="name" required /><span></span
-          ><br /><br />
-
-          <img src="images/monster-2.svg" alt="an icon of a monster" />
-          <label for="sname">Second player's name :</label>
-          <input type="text" id="sname" name="name" required /><span></span
-          ><br /><br />
-
-          <input id="btn-submit-names" type="button" value="Start" />
-        </form>
-      </section>
-
-      <section class="submit-name-computer">
-        <h2>Please put in your name</h2>
-
-        <form class="computer-form" name="myForm" method="get">
-          <img src="images/monster-3.svg" alt="an icon of a monster" />
-          <label for="yname">Your name :</label>
-          <input type="text" id="yname" name="name" required /><span></span>
-          <br /><br />
-
-          <input id="btn-submit-name-computer" type="button" value="Start" />
-        </form>
-      </section>
-
-      <div id="game-page">
-        <section class="players" id="with-friend">
-          <h2 class="cross-player-one">Player 1</h2>
-          <img src="images/monster-1.svg" alt="an icon of a monster" />
-          <h2 class="player-one-score">0</h2>
-          <h2 class="player-two-score">0</h2>
-          <img src="images/monster-2.svg" alt="an icon of a monster" />
-          <h2 class="circle-player-two">Player 2</h2>
-        </section>
-
-        <section class="players" id="with-computer">
-          <h2 class="cross-player">Player</h2>
-          <img src="images/monster-3.svg" alt="an icon of a monster" />
-          <h2 class="player-one-score-com">0</h2>
-          <h2 class="player-two-score-com">0</h2>
-          <img src="images/monster-4.svg" alt="an icon of a monster" />
-          <h2 class="circle-computer-player">Robot</h2>
-        </section>
-
-        <section id="game-status">
-          <h2>It's Your Turn!</h2>
-        </section>
-
-        <!-- gameboard -->
-        <table class="gameboard">
-          <div id="game-end-choices">
-            <div id="play-again"><h2>Play Again</h2></div>
-            <div id="back-to-homepage"><h2>Back Home</h2></div>
+      <main id="site-main">
+        <section id="starting-page">
+          <div class="heading-starting-page">
+            <h1 id="tic">Tic</h1>
+            <h1 id="tac">Tac</h1>
+            <h1 id="toe">Toe</h1>
           </div>
 
-          <tr>
-            <td id="one" class="cell" data-cell="0">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="two" class="cell" data-cell="1">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="three" class="cell" data-cell="2">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td id="four" class="cell" data-cell="3">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="five" class="cell" data-cell="4">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="six" class="cell" data-cell="5">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td id="seven" class="cell" data-cell="6">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="eight" class="cell" data-cell="7">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-            <td id="nine" class="cell" data-cell="8">
-              <img
-                class="cross-mark"
-                src="images/cross.png"
-                alt="A cross mark"
-              />
-              <img
-                class="circle-mark"
-                src="images/circle.png"
-                alt="A circle mark"
-              />
-            </td>
-          </tr>
-        </table>
-      </div>
-    </main>
+          <div class="game-setting">
+            <button class="play-with-friend btn-grad">
+              Play with a Friend
+            </button>
+            <button class="play-with-computer btn-grad">
+              Play with Computer
+            </button>
+          </div>
+        </section>
 
-    <footer class="copyright">
-      <p>
-        &copy; 2023 Nathalie Chang <br />
-        For Educational Purposes Only
-      </p>
-    </footer>
+        <section class="submit-names">
+          <h2>Type Your Names</h2>
+
+          <form class="friends-form" name="myForm" method="get">
+            <div class="friends-form-input">
+              <label for="fname"
+                ><div>
+                  <img
+                    src="images/monster-1.svg"
+                    alt="an icon of a monster"
+                  /></div
+              ></label>
+              <input
+                type="text"
+                id="fname"
+                name="name"
+                placeholder=" First Player"
+                required
+              />
+            </div>
+
+            <div class="friends-form-input friends-form-input02">
+              <label for="sname"
+                ><div>
+                  <img
+                    src="images/monster-2.svg"
+                    alt="an icon of a monster"
+                  /></div
+              ></label>
+              <input
+                type="text"
+                id="sname"
+                name="name"
+                placeholder=" Second Player"
+                required
+              />
+            </div>
+
+            <input
+              id="btn-submit-names"
+              class="btn"
+              type="button"
+              value="Start"
+            />
+          </form>
+        </section>
+
+        <section class="submit-name-computer">
+          <h2>Type Your Name</h2>
+
+          <form class="computer-form" name="myForm" method="get">
+            <div class="friends-form-input">
+              <label for="yname"
+                ><div>
+                  <img
+                    src="images/monster-3.svg"
+                    alt="an icon of a monster"
+                  /></div
+              ></label>
+
+              <input
+                type="text"
+                id="yname"
+                name="name"
+                placeholder=" Name"
+                required
+              /><span></span>
+              <br />
+            </div>
+
+            <input
+              id="btn-submit-name-computer"
+              class="btn"
+              type="button"
+              value="Start"
+            />
+          </form>
+        </section>
+
+        <div id="game-page">
+          <section class="players" id="with-friend">
+            <div class="player-combo left">
+              <img src="images/monster-1.svg" alt="an icon of a monster" />
+              <h2 class="cross-player-one">Player 1</h2>
+            </div>
+            <h2 class="player-one-score">0</h2>
+            <h2 class="player-two-score">0</h2>
+            <div class="player-combo right">
+              <img src="images/monster-2.svg" alt="an icon of a monster" />
+              <h2 class="circle-player-two">Player 2</h2>
+            </div>
+          </section>
+
+          <section class="players" id="with-computer">
+            <div class="player-combo left">
+              <img src="images/monster-3.svg" alt="an icon of a monster" />
+              <h2 class="cross-player">Player</h2>
+            </div>
+            <h2 class="player-one-score-com">0</h2>
+            <h2 class="player-two-score-com">0</h2>
+            <div class="player-combo right">
+              <img src="images/monster-4.svg" alt="an icon of a monster" />
+              <h2 class="circle-computer-player">Robot</h2>
+            </div>
+          </section>
+
+          <section id="game-status">
+            <h2>It's Your Turn!</h2>
+          </section>
+
+          <!-- gameboard -->
+          <table class="gameboard">
+            <div class="blur-bg"></div>
+            <div id="game-end-choices">
+              <div id="play-again" class="btn"><h2>Play Again</h2></div>
+              <div id="back-to-homepage" class="btn"><h2>Back Home</h2></div>
+            </div>
+
+            <tr>
+              <td id="one" class="cell" data-cell="0">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="two" class="cell" data-cell="1">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="three" class="cell" data-cell="2">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td id="four" class="cell" data-cell="3">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="five" class="cell" data-cell="4">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="six" class="cell" data-cell="5">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td id="seven" class="cell" data-cell="6">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="eight" class="cell" data-cell="7">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+              <td id="nine" class="cell" data-cell="8">
+                <img
+                  class="cross-mark"
+                  src="images/cross.png"
+                  alt="A cross mark"
+                />
+                <img
+                  class="circle-mark"
+                  src="images/circle.png"
+                  alt="A circle mark"
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </main>
+
+      <footer class="copyright">
+        <p>
+          &copy; 2024 Nathalie Chang <br />
+          For Educational Purposes Only
+        </p>
+      </footer>
+    </div>
   </body>
 </html>
