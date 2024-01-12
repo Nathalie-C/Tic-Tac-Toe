@@ -169,98 +169,98 @@ let playerTwoScoreCom = 0;
 btnCells.forEach(function (btnCell) {
   btnCell.addEventListener("click", function () {
     // doesn't need to be outside coz we don't need to remember the previous value, but it needs to be outside for loop so the if statement can access it
-
     let hasThisCellBeenClickedBefore = false;
     // if computer(player 2) hasn't click, player 1 can't click
     if (opponent === "computer" && currentPlayer === "1") {
-      alert("Please wait for Robot to select!");
+      alert("Please wait for Drowsy to select!");
       return;
-    }
-    // check the list, it's on the list, do nothing, if it's not, show the mark(display = 'block')
-    if (
-      selectedCellsList[parseInt(btnCell.dataset.cell)] === "0" ||
-      selectedCellsList[parseInt(btnCell.dataset.cell)] === "1"
-    ) {
-      hasThisCellBeenClickedBefore = true;
-    }
-
-    if (hasThisCellBeenClickedBefore === true) {
-      return;
-    }
-    // select and show the mark of clicked cell
-    btnCell.children[Number(currentPlayer)].style.opacity = 1;
-    //add data to the array list
-    selectedCellsList[parseInt(btnCell.dataset.cell)] = currentPlayer;
-
-    //win check
-    if (winCheck(currentPlayer) === true) {
-      // debugger;
-      //add scores
-      if (currentPlayer === "0") {
-        playerOneScore++;
-        playerOneScoreH2.innerHTML = `${playerOneScore}`;
-        playerOneScoreCom++;
-        playerOneScoreComH2.innerHTML = `${playerOneScoreCom}`;
-        selfPlayer.style.color = "#00caad";
-      } else {
-        playerTwoScore++;
-        playerTwoScoreH2.innerHTML = `${playerTwoScore}`;
-      }
-      return;
-    }
-    // draw check
-    if (drawCheck() === true) {
-      return;
-    }
-
-    // computer: switch player
-    if (opponent === "computer") {
-      // 1. generate random numebr between 0 to 8;
-      // 2. if the cell is "0" or "1", regenerate the random number.
-      // 3. while cell is selected, keep regenerate the random number.
-      let randomNum = Math.floor(Math.random() * 9);
-      while (
-        selectedCellsList[randomNum] === "0" ||
-        selectedCellsList[randomNum] === "1"
+    } else {
+      // check the list, it's on the list, do nothing, if it's not, show the mark(display = 'block')
+      if (
+        selectedCellsList[parseInt(btnCell.dataset.cell)] === "0" ||
+        selectedCellsList[parseInt(btnCell.dataset.cell)] === "1"
       ) {
-        randomNum = Math.floor(Math.random() * 9);
+        hasThisCellBeenClickedBefore = true;
       }
 
-      setTimeout(function () {
-        console.log("inside settimneout", randomNum);
-        btnCells[randomNum].children[1].style.opacity = 1;
-      }, 600);
-      selectedCellsList[randomNum] = "1";
-
-      currentPlayer = "1";
-
-      //computer win check
-      if (winCheck(currentPlayer) === true) {
-        playerTwoScoreCom++;
-        playerTwoScoreComH2.innerHTML = `${playerTwoScoreCom}`;
-        computerPlayer.style.color = "#00caad";
+      if (hasThisCellBeenClickedBefore === true) {
         return;
       }
-      //computer draw check
+      // select and show the mark of clicked cell
+      btnCell.children[Number(currentPlayer)].style.opacity = 1;
+      //add data to the array list
+      selectedCellsList[parseInt(btnCell.dataset.cell)] = currentPlayer;
+
+      //win check
+      if (winCheck(currentPlayer) === true) {
+        // debugger;
+        //add scores
+        if (currentPlayer === "0") {
+          playerOneScore++;
+          playerOneScoreH2.innerHTML = `${playerOneScore}`;
+          playerOneScoreCom++;
+          playerOneScoreComH2.innerHTML = `${playerOneScoreCom}`;
+          selfPlayer.style.color = "#00caad";
+        } else {
+          playerTwoScore++;
+          playerTwoScoreH2.innerHTML = `${playerTwoScore}`;
+        }
+        return;
+      }
+      // draw check
       if (drawCheck() === true) {
         return;
       }
 
-      currentPlayer = "0";
-    } else {
-      // if play with friends, switch player
-      if (currentPlayer === "0") {
-        playerOne.style.color = "#d9d9e5";
-        playerTwo.style.color = "#00caad";
-        // selfPlayer.style.color = "#d9d9e5";
-        // computerPlayer.style.color = "green";
+      // computer: switch player
+      if (opponent === "computer") {
+        // 1. generate random numebr between 0 to 8;
+        // 2. if the cell is "0" or "1", regenerate the random number.
+        // 3. while cell is selected, keep regenerate the random number.
+        let randomNum = Math.floor(Math.random() * 9);
+        while (
+          selectedCellsList[randomNum] === "0" ||
+          selectedCellsList[randomNum] === "1"
+        ) {
+          randomNum = Math.floor(Math.random() * 9);
+        }
+
+        setTimeout(function () {
+          console.log("inside settimneout", randomNum);
+          btnCells[randomNum].children[1].style.opacity = 1;
+        }, 600);
+        selectedCellsList[randomNum] = "1";
+
         currentPlayer = "1";
-      } else {
-        playerOne.style.color = "#00caad";
-        playerTwo.style.color = "#d9d9e5";
-        // selfPlayer.style.color = "green";
-        // computerPlayer.style.color = "#d9d9e5";
+
+        //computer win check
+        if (winCheck(currentPlayer) === true) {
+          playerTwoScoreCom++;
+          playerTwoScoreComH2.innerHTML = `${playerTwoScoreCom}`;
+          computerPlayer.style.color = "#00caad";
+          return;
+        }
+        //computer draw check
+        if (drawCheck() === true) {
+          return;
+        }
+
         currentPlayer = "0";
+      } else {
+        // if play with friends, switch player
+        if (currentPlayer === "0") {
+          playerOne.style.color = "#d9d9e5";
+          playerTwo.style.color = "#00caad";
+          // selfPlayer.style.color = "#d9d9e5";
+          // computerPlayer.style.color = "green";
+          currentPlayer = "1";
+        } else {
+          playerOne.style.color = "#00caad";
+          playerTwo.style.color = "#d9d9e5";
+          // selfPlayer.style.color = "green";
+          // computerPlayer.style.color = "#d9d9e5";
+          currentPlayer = "0";
+        }
       }
     }
   });
