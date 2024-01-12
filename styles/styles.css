@@ -414,7 +414,7 @@ input[value="Start"] {
   top: 16rem;
   left: 0;
   right: 0;
-  width: 19rem;
+  width: 100vw;
   height: 18.5rem;
   z-index: 90;
 }
@@ -467,18 +467,12 @@ input[value="Start"] {
   max-width: 3.5rem;
 }
 
-.cross-mark {
-  left: 0;
-  right: 0;
-  top: 1rem;
-}
-
 .win-line {
   position: absolute;
   /* display: none; */
 }
 
-/* 430px */
+/* 430px  height: 932px */
 @media (min-width: 26.875em) {
   h1 {
     font-size: 3.5rem;
@@ -492,7 +486,7 @@ input[value="Start"] {
   }
 }
 
-/* 1400px */
+/* 1400px height: 960px*/
 @media (min-width: 87.5em) {
   h1 {
     font-size: 5rem;
@@ -553,6 +547,86 @@ input[value="Start"] {
     font-size: 2rem;
     font-weight: 400;
     color: white;
+  }
+
+  /* game page */
+  .players img {
+    width: 6rem;
+    margin: 0 1rem 1.5rem 1rem;
+  }
+
+  .player-combo h2 {
+    font-size: 2.6rem;
+  }
+
+  .player-one-score,
+  .player-one-score-com {
+    margin: auto 2rem auto 2.5rem;
+  }
+
+  .player-two-score,
+  .player-two-score-com {
+    margin: auto 2.5rem auto 2rem;
+  }
+
+  .player-one-score,
+  .player-two-score,
+  .player-one-score-com,
+  .player-two-score-com {
+    font-size: 3rem;
+  }
+
+  .cross-player-one,
+  .circle-player-two,
+  .cross-player,
+  .circle-computer-player {
+    margin: 0 2rem;
+  }
+
+  #game-end-choices {
+    width: 25rem;
+    height: 16rem;
+    margin: auto;
+    top: 36rem;
+  }
+
+  #game-end-choices h2 {
+    font-size: 2.8rem;
+    font-weight: 600;
+  }
+
+  #back-to-homepage {
+    margin-top: 2.5rem;
+  }
+
+  .blur-bg {
+    top: 22.5rem;
+    height: 35.5rem;
+  }
+
+  #game-page td {
+    width: 12rem;
+    height: 11rem;
+  }
+
+  #game-status {
+    top: 30rem;
+  }
+
+  #game-status h2 {
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+
+  .gameboard {
+    margin: 3rem auto 2.5rem auto;
+  }
+  .circle-mark,
+  .cross-mark {
+    top: 2rem;
+    left: 0;
+    right: 0;
+    max-width: 6rem;
   }
 }
 
@@ -617,6 +691,85 @@ input[value="Start"] {
     font-size: 2.5rem;
     font-weight: 400;
     color: white;
+  }
+  /* game page */
+  .players img {
+    width: 8rem;
+    margin: 0 1rem 1.5rem 1rem;
+  }
+
+  .player-combo h2 {
+    font-size: 4rem;
+  }
+
+  .player-one-score,
+  .player-one-score-com {
+    margin: auto 3rem auto 3.5rem;
+  }
+
+  .player-two-score,
+  .player-two-score-com {
+    margin: auto 3.5rem auto 3rem;
+  }
+
+  .player-one-score,
+  .player-two-score,
+  .player-one-score-com,
+  .player-two-score-com {
+    font-size: 4.5rem;
+  }
+
+  .cross-player-one,
+  .circle-player-two,
+  .cross-player,
+  .circle-computer-player {
+    margin: 0 2rem;
+  }
+
+  #game-end-choices {
+    width: 31rem;
+    height: 17rem;
+    margin: auto;
+    top: 42rem;
+  }
+
+  #game-end-choices h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  #back-to-homepage {
+    margin-top: 3.5rem;
+  }
+
+  .blur-bg {
+    top: 29.5rem;
+    height: 40.5rem;
+  }
+
+  #game-page td {
+    width: 15rem;
+    height: 13rem;
+  }
+
+  #game-status {
+    top: 34rem;
+  }
+
+  #game-status h2 {
+    font-size: 3.5rem;
+    margin-top: 1rem;
+  }
+
+  .gameboard {
+    margin: 3rem auto 3.5rem auto;
+  }
+  .circle-mark,
+  .cross-mark {
+    top: 2rem;
+    left: 0;
+    right: 0;
+    max-width: 8rem;
   }
 }
 
