@@ -67,51 +67,58 @@ selfPlayerName.addEventListener("change", function () {
 });
 
 btnSubmitNames.addEventListener("click", function () {
-  if (playerOneName.value.trim() === "" || playerTwoName.value.trim() === "") {
+  let player01 = playerOneName.value.trim();
+  let player02 = playerTwoName.value.trim();
+  if (player01 === "" || player02 === "") {
     alert("Name can not be empty!");
     return;
   }
 
-  if (
-    playerOneName.value.trim().length >= 9 ||
-    playerTwoName.value.trim().length >= 9
-  ) {
-    alert("Name can not be more than 8 digit!");
+  if (player01.length >= 9 || player02.length >= 9) {
+    alert("Name can not be more than 8 charactors!");
     return;
   }
+  // capitalize 1st letter of names
+  let capPlayer01 = capitalize(player01);
+  let capPlayer02 = capitalize(player02);
+
   submitNamesPage.style.display = "none";
   playWFriendPage.style.display = "flex";
 
-  playerOne.innerHTML = playerOneName.value.trim();
-  playerTwo.innerHTML = playerTwoName.value.trim();
-  gameStatus.children[0].innerHTML = `${playerOneName.value.trim()}'s Turn!`;
+  playerOne.innerHTML = capPlayer01;
+  playerTwo.innerHTML = capPlayer02;
+  gameStatus.children[0].innerHTML = `${capPlayer01}'s Turn!`;
   gameBoard.style.display = "block";
   playerOne.style.color = "#00caad";
   gameStatus.style.display = "block";
   gameStatus.style.opacity = 1;
   setTimeout(function () {
     gameStatus.style.opacity = 0;
+    gameStatus.style.display = "none";
   }, 1500);
   opponent = "friend";
 });
 
 btnSubmitNameComputer.addEventListener("click", function () {
-  if (selfPlayerName.value.trim() === "") {
+  let player01 = selfPlayerName.value.trim();
+  if (player01 === "") {
     alert("Name can not be empty!");
     return;
-  } else if (selfPlayerName.value.trim().length >= 9) {
-    alert("Name can not be more than 8 digit!");
+  } else if (player01.length >= 9) {
+    alert("Name can not be more than 8 charactors!");
     return;
   } else {
+    let capPlayer01 = capitalize(player01);
     submitNameComputerPage.style.display = "none";
     playWComputerPage.style.display = "flex";
-    selfPlayer.innerHTML = selfPlayerName.value.trim();
+    selfPlayer.innerHTML = capPlayer01;
     gameBoard.style.display = "block";
     selfPlayer.style.color = "#00caad";
     gameStatus.style.display = "block";
     gameStatus.style.opacity = 1;
     setTimeout(function () {
       gameStatus.style.opacity = 0;
+      gameStatus.style.display = "none";
     }, 1500);
     opponent = "computer";
   }
@@ -125,6 +132,7 @@ btnPlayAgain.addEventListener("click", function () {
   gameStatus.children[0].innerHTML = `It's Your Turn!`;
   setTimeout(function () {
     gameStatus.style.opacity = 0;
+    gameStatus.style.display = "none";
   }, 3000);
   blurBg.style.display = "none";
   gameEndChoices.style.display = "none";
@@ -172,7 +180,7 @@ btnCells.forEach(function (btnCell) {
     let hasThisCellBeenClickedBefore = false;
     // if computer(player 2) hasn't click, player 1 can't click
     if (opponent === "computer" && currentPlayer === "1") {
-      alert("Please wait for Drowsy to select!");
+      alert("Please wait for Drowsy to wake up and select!");
       return;
     } else {
       // check the list, it's on the list, do nothing, if it's not, show the mark(display = 'block')
@@ -228,6 +236,7 @@ btnCells.forEach(function (btnCell) {
         setTimeout(function () {
           console.log("inside settimneout", randomNum);
           btnCells[randomNum].children[1].style.opacity = 1;
+          currentPlayer = "0";
         }, 600);
         selectedCellsList[randomNum] = "1";
 
@@ -244,8 +253,6 @@ btnCells.forEach(function (btnCell) {
         if (drawCheck() === true) {
           return;
         }
-
-        currentPlayer = "0";
       } else {
         // if play with friends, switch player
         if (currentPlayer === "0") {
@@ -263,6 +270,7 @@ btnCells.forEach(function (btnCell) {
         }
       }
     }
+    console.log(selectedCellsList);
   });
 });
 
@@ -272,6 +280,7 @@ function winCheck(currentPlayer) {
   let winNameComputer = winNameCom();
 
   if (winMoveCheck === true) {
+    gameStatus.style.display = "block";
     gameStatus.style.opacity = 1;
 
     if (opponent === "friend") {
@@ -299,9 +308,9 @@ function winCheck(currentPlayer) {
 function winName() {
   let winPlayerName;
   if (currentPlayer === "0") {
-    winPlayerName = playerOneName.value.trim();
+    winPlayerName = capitalize(playerOneName.value.trim());
   } else {
-    winPlayerName = playerTwoName.value.trim();
+    winPlayerName = capitalize(playerTwoName.value.trim());
   }
   return winPlayerName;
 }
@@ -309,9 +318,9 @@ function winName() {
 function winNameCom() {
   let winPlayerName;
   if (currentPlayer === "0") {
-    winPlayerName = selfPlayerName.value.trim();
+    winPlayerName = capitalize(selfPlayerName.value.trim());
   } else {
-    winPlayerName = `Computer`;
+    winPlayerName = `Drowsy`;
   }
   return winPlayerName;
 }
@@ -327,6 +336,7 @@ function winTwinkle(opacity, waitTime, currentPlayer) {
 
 function drawTwinkle(opacity, waitTime) {
   setTimeout(function () {
+    gameStatus.style.display = "block";
     gameStatus.style.opacity = opacity;
     gameStatus.children[0].innerHTML = `Draw!`;
   }, waitTime);
@@ -430,195 +440,40 @@ function drawCheck() {
   return drawHappened; //if it doesn't return, it will return 'undefined'
 }
 
+const winCombinations = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [2, 4, 6],
+  [0, 4, 8],
+];
+
 function checkWinCombo() {
   let winMove = false;
-  //player 1
-  if (
-    selectedCellsList[0] === "0" &&
-    selectedCellsList[1] === "0" &&
-    selectedCellsList[2] === "0"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 1;
-    thirdCell = 2;
-  }
-
-  if (
-    selectedCellsList[3] === "0" &&
-    selectedCellsList[4] === "0" &&
-    selectedCellsList[5] === "0"
-  ) {
-    winMove = true;
-    firstCell = 3;
-    secondCell = 4;
-    thirdCell = 5;
-  }
-
-  if (
-    selectedCellsList[6] === "0" &&
-    selectedCellsList[7] === "0" &&
-    selectedCellsList[8] === "0"
-  ) {
-    winMove = true;
-    firstCell = 6;
-    secondCell = 7;
-    thirdCell = 8;
-  }
-
-  if (
-    selectedCellsList[0] === "0" &&
-    selectedCellsList[3] === "0" &&
-    selectedCellsList[6] === "0"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 3;
-    thirdCell = 6;
-  }
-
-  if (
-    selectedCellsList[1] === "0" &&
-    selectedCellsList[4] === "0" &&
-    selectedCellsList[7] === "0"
-  ) {
-    winMove = true;
-    firstCell = 1;
-    secondCell = 4;
-    thirdCell = 7;
-  }
-
-  if (
-    selectedCellsList[2] === "0" &&
-    selectedCellsList[5] === "0" &&
-    selectedCellsList[8] === "0"
-  ) {
-    winMove = true;
-    firstCell = 2;
-    secondCell = 5;
-    thirdCell = 8;
-  }
-
-  if (
-    selectedCellsList[2] === "0" &&
-    selectedCellsList[4] === "0" &&
-    selectedCellsList[6] === "0"
-  ) {
-    winMove = true;
-    firstCell = 2;
-    secondCell = 4;
-    thirdCell = 6;
-  }
-
-  if (
-    selectedCellsList[0] === "0" &&
-    selectedCellsList[4] === "0" &&
-    selectedCellsList[8] === "0"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 4;
-    thirdCell = 8;
-  }
-
-  //player 2
-  if (
-    selectedCellsList[0] === "1" &&
-    selectedCellsList[1] === "1" &&
-    selectedCellsList[2] === "1"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 1;
-    thirdCell = 2;
-  }
-
-  if (
-    selectedCellsList[3] === "1" &&
-    selectedCellsList[4] === "1" &&
-    selectedCellsList[5] === "1"
-  ) {
-    winMove = true;
-    firstCell = 3;
-    secondCell = 4;
-    thirdCell = 5;
-  }
-
-  if (
-    selectedCellsList[6] === "1" &&
-    selectedCellsList[7] === "1" &&
-    selectedCellsList[8] === "1"
-  ) {
-    winMove = true;
-    firstCell = 6;
-    secondCell = 7;
-    thirdCell = 8;
-  }
-
-  if (
-    selectedCellsList[0] === "1" &&
-    selectedCellsList[3] === "1" &&
-    selectedCellsList[6] === "1"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 3;
-    thirdCell = 6;
-  }
-
-  if (
-    selectedCellsList[1] === "1" &&
-    selectedCellsList[4] === "1" &&
-    selectedCellsList[7] === "1"
-  ) {
-    winMove = true;
-    firstCell = 1;
-    secondCell = 4;
-    thirdCell = 7;
-  }
-
-  if (
-    selectedCellsList[2] === "1" &&
-    selectedCellsList[5] === "1" &&
-    selectedCellsList[8] === "1"
-  ) {
-    winMove = true;
-    firstCell = 2;
-    secondCell = 5;
-    thirdCell = 8;
-  }
-
-  if (
-    selectedCellsList[2] === "1" &&
-    selectedCellsList[4] === "1" &&
-    selectedCellsList[6] === "1"
-  ) {
-    winMove = true;
-    firstCell = 2;
-    secondCell = 4;
-    thirdCell = 6;
-  }
-
-  if (
-    selectedCellsList[0] === "1" &&
-    selectedCellsList[4] === "1" &&
-    selectedCellsList[8] === "1"
-  ) {
-    winMove = true;
-    firstCell = 0;
-    secondCell = 4;
-    thirdCell = 8;
-  }
+  winCombinations.forEach(function (oneCombo) {
+    selectedCellsList.forEach(function () {
+      if (
+        (selectedCellsList[oneCombo[0]] === "1" &&
+          selectedCellsList[oneCombo[1]] === "1" &&
+          selectedCellsList[oneCombo[2]] === "1") ||
+        (selectedCellsList[oneCombo[0]] === "0" &&
+          selectedCellsList[oneCombo[1]] === "0" &&
+          selectedCellsList[oneCombo[2]] === "0")
+      ) {
+        winMove = true;
+        firstCell = oneCombo[0];
+        secondCell = oneCombo[1];
+        thirdCell = oneCombo[2];
+      }
+    });
+  });
   return winMove;
 }
 
-// const winCombinations = [
-//   [0, 1, 2],
-//   [3, 4, 5],
-//   [6, 7, 8],
-//   [0, 3, 6],
-//   [1, 4, 7],
-//   [2, 5, 8],
-//   [2, 4, 6],
-//   [0, 4, 8],
-// ];
+function capitalize(name) {
+  let result = name.charAt(0).toUpperCase() + name.slice(1);
+  return result;
+}
